@@ -50,27 +50,56 @@ h1{
     color: #374151;
     margin-bottom: 20px;
 }
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
 
 button{
-    width: 100%;
-    border: none;
-    background-color: #111827;
-    color: white;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+    color:white;
+}
+
+/* Random Color */
+#randomBtn{
+    background:#0f766e;
+}
+
+#randomBtn:hover{
+    background:#115e59;
+}
+
+/* Gradient */
+#gradientBtn{
+    background:#7c3aed;
+}
+
+#gradientBtn:hover{
+    background:#6d28d9;
+}
+
+/* Copy */
+#copyBtn{
+    background:#1f2937;
+}
+
+#copyBtn:hover{
+    background:#111827;
 }
 
 button:hover{
-    background: #1f2937;
-    transform: translateY(-2px);
+    transform:translateY(-2px);
 }
 
-button:active {
-    transform: scale(0.98);
+button:active{
+    transform:scale(0.98);
 }
 
 @media (max-width: 480px) {
