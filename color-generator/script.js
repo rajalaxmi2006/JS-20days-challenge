@@ -5,72 +5,50 @@ const randomBtn = document.getElementById("randomBtn");
 const gradientBtn = document.getElementById("gradientBtn");
 const copyBtn = document.getElementById("copyBtn");
 
-
 // Generate Random HEX Color
 function getRandomColor() {
+  const letters = "0123456789ABCDEF";
 
-    const letters = "0123456789ABCDEF";
+  let color = "#";
 
-    let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
 
-    for(let i = 0; i < 6; i++) {
-
-        color += letters[Math.floor(Math.random() * 16)];
-
-    }
-
-    return color;
+  return color;
 }
 
 // Random Color Button
 function generateRandomColor() {
+  const color = getRandomColor();
 
-    const color = getRandomColor();
+  colorBox.style.background = color;
 
-    colorBox.style.background = color;
-
-    colorCode.textContent = color;
+  colorCode.textContent = color;
 }
 function generateGradient() {
+  const color1 = getRandomColor();
+  const color2 = getRandomColor();
 
-    const color1 = getRandomColor();
-    const color2 = getRandomColor();
+  const gradient = `linear-gradient(135deg, ${color1}, ${color2})`;
 
-    const gradient =
-    `linear-gradient(135deg, ${color1}, ${color2})`;
+  colorBox.style.background = gradient;
 
-    colorBox.style.background = gradient;
-
-    colorCode.textContent =
-    `${color1} → ${color2}`;
+  colorCode.textContent = `${color1} → ${color2}`;
 }
 function copyColorCode() {
+  navigator.clipboard.writeText(colorCode.textContent);
 
-    navigator.clipboard.writeText(
-        colorCode.textContent
-    );
+  copyBtn.textContent = "Copied ✓";
 
-    copyBtn.textContent = "Copied ✓";
-
-    setTimeout(() => {
-
-        copyBtn.textContent = "Copy Code";
-
-    }, 1500);
+  setTimeout(() => {
+    copyBtn.textContent = "Copy Code";
+  }, 1500);
 }
-randomBtn.addEventListener(
-    "click",
-    generateRandomColor
-);
+randomBtn.addEventListener("click", generateRandomColor);
 
-gradientBtn.addEventListener(
-    "click",
-    generateGradient
-);
+gradientBtn.addEventListener("click", generateGradient);
 
-copyBtn.addEventListener(
-    "click",
-    copyColorCode
-);
+copyBtn.addEventListener("click", copyColorCode);
 
 generateRandomColor();
