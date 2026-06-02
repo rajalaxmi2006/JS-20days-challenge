@@ -1,3 +1,4 @@
+const ageInput = document.getElementById("age");
 const weightInput = document.getElementById("weight");
 const heightInput = document.getElementById("height");
 
@@ -8,59 +9,91 @@ const bmiValue = document.getElementById("bmiValue");
 const category = document.getElementById("category");
 const tip = document.getElementById("tip");
 
-function calculateBMI(){
+function calculateBMI() {
+
+    const age = Number(ageInput.value);
     const weight = Number(weightInput.value);
     const height = Number(heightInput.value);
 
-    if(weight <= 0 || height <=0){
-        alert("Please enter valid values:");
+    if (age <= 0 || weight <= 0 || height <= 0) {
+
+        alert("Please enter valid values.");
+
         return;
     }
 
-    const heightInMeters=height/100;
+    const heightInMeters = height / 100;
 
-    const bmi=weight/(heightInMeters*heightInMeters);
+    const bmi =
+        weight /
+        (heightInMeters * heightInMeters);
 
-    bmiValue.textContent=`Your BMI : ${bmi.toFixed(2)}`;
+    bmiValue.textContent =
+        `Your BMI: ${bmi.toFixed(2)}`;
 
-    if(bmi<18.5){
-        category.textContent="Category: Underweight ⚠️"
+    if (bmi < 20) {
 
-        tip.textContent="Consider a balanced diet with adequate nutrition."
-    }
-
-    else if(bmi < 25){
-        category.textContent="Category: Normal weight ✅";
+        category.textContent =
+            "Category: Underweight ⚠️";
 
         tip.textContent =
-            "Great job! Keep maintaining a healthy lifestyle.";
-    } else if (bmi < 30) {
+            "Consider increasing your calorie intake with a balanced diet.";
+
+    }
+
+    else if (bmi < 25) {
+
+        category.textContent =
+            "Category: Normal Weight ✅";
+
+        tip.textContent =
+            "Excellent! Maintain your healthy lifestyle and stay active.";
+
+    }
+
+    else if (bmi < 30) {
 
         category.textContent =
             "Category: Overweight ⚠️";
 
         tip.textContent =
-            "Regular exercise and healthy eating can help.";
+            "Regular exercise and a balanced diet can help improve your health.";
 
-    } else {
+    }
+
+    else {
 
         category.textContent =
             "Category: Obese 🚨";
 
         tip.textContent =
-            "Consider consulting a healthcare professional.";
-        }
+            "Consider consulting a healthcare professional for personalized advice.";
+
+    }
 }
 
-function resetCalculator(){
-    weightInput.value="";
-    heightInput.value="";
+function resetCalculator() {
 
-    bmiValue.textContent="Your BMI : ";
-    category.textContent="Category : ";
-    tip.textContent="Enter your details above.";
+    ageInput.value = "";
+    weightInput.value = "";
+    heightInput.value = "";
+
+    bmiValue.textContent =
+        "Your BMI: --";
+
+    category.textContent =
+        "Category: --";
+
+    tip.textContent =
+        "Enter your details above.";
 }
 
-calculateBtn.addEventListener("click" , calculateBMI);
+calculateBtn.addEventListener(
+    "click",
+    calculateBMI
+);
 
-resetBtn.addEventListener("click" , resetCalculator);
+resetBtn.addEventListener(
+    "click",
+    resetCalculator
+);
