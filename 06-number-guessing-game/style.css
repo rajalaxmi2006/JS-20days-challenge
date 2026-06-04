@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #334155
+    );
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:rgba(255,255,255,0.95);
+    padding:40px;
+    border-radius:24px;
+    text-align:center;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.25);
+}
+
+h1{
+    color:#0f172a;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.instructions{
+    color:#64748b;
+    margin-bottom:25px;
+    font-size:1rem;
+}
+
+input{
+    width:100%;
+    padding:16px;
+    border:2px solid #e2e8f0;
+    border-radius:14px;
+    font-size:1rem;
+    outline:none;
+    transition:0.3s ease;
+    margin-bottom:20px;
+}
+
+input:focus{
+    border-color:#3b82f6;
+    box-shadow:
+        0 0 0 4px rgba(59,130,246,0.15);
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+}
+
+button{
+    flex:1;
+    border:none;
+    padding:15px;
+    border-radius:14px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+#checkBtn{
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #2563eb
+    );
+
+    color:white;
+}
+
+#checkBtn:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 10px 20px rgba(37,99,235,0.3);
+}
+
+#restartBtn{
+    background:#111827;
+    color:white;
+}
+
+#restartBtn:hover{
+    transform:translateY(-3px);
+    background:#1f2937;
+}
+
+.result{
+    margin-top:25px;
+    padding:25px;
+    background:#f8fafc;
+    border-radius:18px;
+    border:1px solid #e2e8f0;
+}
+
+#message{
+    color:#0f172a;
+    margin-bottom:15px;
+    font-size:1.3rem;
+    font-weight:600;
+}
+
+#attempts,
+#previousGuesses{
+    color:#475569;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:25px;
+    }
+    .buttons{
+        flex-direction:column;
+    }
+    h1{
+        font-size:1.6rem;
+    }
+}
