@@ -1,213 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #0f172a;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🧮 Simple Calculator</h1>
 
-    .calculator-container {
-      background: #1e293b;
-      padding: 24px;
-      border-radius: 20px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-      width: 300px;
-      border: 1px solid #334155;
-    }
+      <input type="number" id="num1" placeholder="Enter First Number" />
 
-    h1 {
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 16px;
-      color: #94a3b8;
-      letter-spacing: 0.05em;
-    }
+      <input type="number" id="num2" placeholder="Enter Second Number" />
 
-    #display {
-      width: 100%;
-      margin-bottom: 16px;
-      padding: 12px;
-      text-align: right;
-      background-color: #020617;
-      border: 1px solid #334155;
-      color: #38bdf8;
-      border-radius: 8px;
-      font-size: 1.5rem;
-      font-family: monospace;
-      outline: none;
-      height: 54px;
-    }
+      <div class="buttons">
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">−</button>
+        <button onclick="calculate('*')">×</button>
+        <button onclick="calculate('/')">÷</button>
+      </div>
 
-    .grid-layout {
-      display: grid;
-      grid-template-cols: repeat(4, 1fr);
-      gap: 10px;
-    }
+      <button id="resetBtn">Reset</button>
 
-    .btn {
-      padding: 14px;
-      background: #334155;
-      color: #f8fafc;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.1s, transform 0.05s;
-    }
-
-    .btn:hover {
-      background: #475569;
-    }
-
-    .btn:active {
-      transform: scale(0.96);
-    }
-
-    .clr-btn {
-      background-color: #f43f5e;
-      color: #ffffff;
-    }
-
-    .clr-btn:hover {
-      background-color: #e11d48;
-    }
-
-    .row-span-2 {
-      grid-row: span 2;
-      height: 100%;
-      background-color: #0ea5e9;
-      color: #ffffff;
-    }
-
-    .row-span-2:hover {
-      background-color: #0284c7;
-    }
-
-    .col-span-2 {
-      grid-column: span 2;
-    }
-
-    #lastResult {
-      font-size: 0.8rem;
-      margin-top: 14px;
-      color: #64748b;
-      min-height: 1.25rem;
-      text-align: right;
-      font-family: monospace;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="calculator-container">
-    <h1>🧮 Calculator</h1>
-
-    <input
-      type="text"
-      id="display"
-      readonly
-    />
-
-    <div class="grid-layout">
-      <button data-value="C" class="btn clr-btn">C</button>
-      <button data-value="/" class="btn">÷</button>
-      <button data-value="*" class="btn">×</button>
-      <button data-value="-" class="btn">−</button>
-
-      <button data-value="7" class="btn">7</button>
-      <button data-value="8" class="btn">8</button>
-      <button data-value="9" class="btn">9</button>
-      <button data-value="+" class="btn">+</button>
-
-      <button data-value="4" class="btn">4</button>
-      <button data-value="5" class="btn">5</button>
-      <button data-value="6" class="btn">6</button>
-      <button data-value="=" class="btn row-span-2">=</button>
-
-      <button data-value="1" class="btn">1</button>
-      <button data-value="2" class="btn">2</button>
-      <button data-value="3" class="btn">3</button>
-
-      <button data-value="0" class="btn col-span-2">0</button>
-      <button data-value="." class="btn">.</button>
+      <div class="result">
+        <h2 id="result">Result: 0</h2>
+      </div>
     </div>
-
-    <p id="lastResult"></p>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const display = document.getElementById("display");
-      const lastResult = document.getElementById("lastResult");
-      const buttons = document.querySelectorAll("button");
-
-      let currentInput = "";
-      let isEvaluationDone = false;
-
-      buttons.forEach(button => {
-        button.addEventListener("click", () => {
-          const value = button.getAttribute("data-value");
-
-          if (value === "C") {
-            currentInput = "";
-            display.value = "";
-            lastResult.textContent = "";
-          } else if (value === "=") {
-            if (currentInput.trim() === "") return;
-            
-            try {
-              const result = new Function(`return ${currentInput}`)();
-              const formattedResult = Number(result.toFixed(8)).toString();
-              
-              lastResult.textContent = `${currentInput.replace(/\*/g, "×").replace(/\//g, "÷")} =`;
-              display.value = formattedResult;
-              currentInput = formattedResult;
-              isEvaluationDone = true;
-            } catch (error) {
-              display.value = "Error";
-              currentInput = "";
-            }
-          } else {
-            if (isEvaluationDone && !isNaN(value)) {
-              currentInput = "";
-            }
-            isEvaluationDone = false;
-
-            const lastChar = currentInput.slice(-1);
-            if (["+", "-", "*", "/"].includes(value) && ["+", "-", "*", "/"].includes(lastChar)) {
-              currentInput = currentInput.slice(0, -1) + value;
-            } else {
-              currentInput += value;
-            }
-
-            display.value = currentInput
-              .replace(/\*/g, "×")
-              .replace(/\//g, "÷");
-          }
-        });
-      });
-    });
-  </script>
-
-</body>
+  </body>
 </html>
