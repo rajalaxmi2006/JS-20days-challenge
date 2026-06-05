@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Calculator</title>
+  <title>Calculator</title>
   <style>
     * {
       box-sizing: border-box;
@@ -14,194 +14,145 @@
     body {
       min-height: 100vh;
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: center;
-      background-color: #0f111a;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0f172a;
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .calculator-card {
-      background: #1e2230;
-      width: 350px;
+    .calculator-container {
+      background: #1e293b;
       padding: 24px;
-      border-radius: 32px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
-                  inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      border: 1px solid #2a2f42;
-    }
-
-    .calculator-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      padding: 0 4px;
-    }
-
-    .brand-text {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #64748b;
-      letter-spacing: 0.15em;
-    }
-
-    .decorations {
-      display: flex;
-      gap: 6px;
-    }
-
-    .indicator-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: #334155;
-    }
-
-    .display-pane {
-      background-color: #0d0f17;
       border-radius: 20px;
-      padding: 16px 20px;
-      margin-bottom: 24px;
-      border: 1px solid #252a3c;
-      box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      border: 1px solid #334155;
     }
 
-    #lastResult {
-      font-size: 0.9rem;
-      color: #475569;
-      font-family: ui-monospace, monospace;
-      text-align: right;
-      min-height: 1.2rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    h1 {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
     }
 
     #display {
       width: 100%;
+      margin-bottom: 16px;
+      padding: 12px;
       text-align: right;
-      background: transparent;
-      color: #ffffff;
-      font-size: 2.75rem;
-      font-weight: 300;
-      border: none;
+      background-color: #020617;
+      border: 1px solid #334155;
+      color: #38bdf8;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      font-family: monospace;
       outline: none;
-      margin-top: 4px;
-      letter-spacing: -0.02em;
+      height: 54px;
     }
 
-    #display::placeholder {
-      color: #1e2230;
-    }
-
-    .button-grid {
+    .grid-layout {
       display: grid;
       grid-template-cols: repeat(4, 1fr);
-      gap: 14px;
+      gap: 10px;
     }
 
-    button {
-      outline: none;
-      height: 66px;
-      font-size: 1.4rem;
-      font-weight: 500;
-      border-radius: 18px;
-      border: none;
+    .btn {
+      padding: 14px;
+      background: #334155;
+      color: #f8fafc;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
       cursor: pointer;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.12s ease, transform 0.08s ease;
+      transition: background-color 0.1s, transform 0.05s;
     }
 
-    button:active {
-      transform: scale(0.94);
+    .btn:hover {
+      background: #475569;
     }
 
-    .btn-number {
-      background-color: #282e42;
-      color: #f8fafc;
+    .btn:active {
+      transform: scale(0.96);
     }
 
-    .btn-number:hover {
-      background-color: #353d57;
-    }
-
-    .btn-clear {
-      background-color: #451a1a;
-      color: #f87171;
-    }
-
-    .btn-clear:hover {
-      background-color: #612424;
-    }
-
-    .btn-operator {
-      background-color: #45300b;
-      color: #fbbf24;
-    }
-
-    .btn-operator:hover {
-      background-color: #5e4210;
-    }
-
-    .btn-equal {
-      background-color: #0284c7;
+    .clr-btn {
+      background-color: #f43f5e;
       color: #ffffff;
-      font-weight: 600;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
     }
 
-    .btn-equal:hover {
+    .clr-btn:hover {
+      background-color: #e11d48;
+    }
+
+    .row-span-2 {
+      grid-row: span 2;
+      height: 100%;
       background-color: #0ea5e9;
+      color: #ffffff;
     }
 
-    .double-width {
+    .row-span-2:hover {
+      background-color: #0284c7;
+    }
+
+    .col-span-2 {
       grid-column: span 2;
+    }
+
+    #lastResult {
+      font-size: 0.8rem;
+      margin-top: 14px;
+      color: #64748b;
+      min-height: 1.25rem;
+      text-align: right;
+      font-family: monospace;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="calculator-card">
-    <div class="calculator-header">
-      <span class="brand-text">ELECTRONIC</span>
-      <div class="decorations">
-        <div class="indicator-dot"></div>
-        <div class="indicator-dot"></div>
-        <div class="indicator-dot"></div>
-      </div>
+  <div class="calculator-container">
+    <h1>🧮 Calculator</h1>
+
+    <input
+      type="text"
+      id="display"
+      readonly
+    />
+
+    <div class="grid-layout">
+      <button data-value="C" class="btn clr-btn">C</button>
+      <button data-value="/" class="btn">÷</button>
+      <button data-value="*" class="btn">×</button>
+      <button data-value="-" class="btn">−</button>
+
+      <button data-value="7" class="btn">7</button>
+      <button data-value="8" class="btn">8</button>
+      <button data-value="9" class="btn">9</button>
+      <button data-value="+" class="btn">+</button>
+
+      <button data-value="4" class="btn">4</button>
+      <button data-value="5" class="btn">5</button>
+      <button data-value="6" class="btn">6</button>
+      <button data-value="=" class="btn row-span-2">=</button>
+
+      <button data-value="1" class="btn">1</button>
+      <button data-value="2" class="btn">2</button>
+      <button data-value="3" class="btn">3</button>
+
+      <button data-value="0" class="btn col-span-2">0</button>
+      <button data-value="." class="btn">.</button>
     </div>
 
-    <div class="display-pane">
-      <p id="lastResult"></p>
-      <input type="text" id="display" placeholder="0" readonly />
-    </div>
-
-    <div class="button-grid">
-      <button data-value="C" class="btn-clear">C</button>
-      <button data-value="/" class="btn-operator">÷</button>
-      <button data-value="*" class="btn-operator">×</button>
-      <button data-value="-" class="btn-operator">−</button>
-
-      <button data-value="7" class="btn-number">7</button>
-      <button data-value="8" class="btn-number">8</button>
-      <button data-value="9" class="btn-number">9</button>
-      <button data-value="+" class="btn-operator">+</button>
-
-      <button data-value="4" class="btn-number">4</button>
-      <button data-value="5" class="btn-number">5</button>
-      <button data-value="6" class="btn-number">6</button>
-      <button data-value="=" class="btn-equal">=</button>
-
-      <button data-value="1" class="btn-number">1</button>
-      <button data-value="2" class="btn-number">2</button>
-      <button data-value="3" class="btn-number">3</button>
-
-      <button data-value="0" class="btn-number double-width">0</button>
-      <button data-value="." class="btn-number">.</button>
-    </div>
+    <p id="lastResult"></p>
   </div>
 
   <script>
