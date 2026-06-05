@@ -4,47 +4,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modern Calculator</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      items-center: center;
+      justify-content: center;
+      align-items: center;
+      background-color: #f1f5f9;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .calculator-card {
+      background-color: #ffffff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      width: 320px;
+      border: 1px solid #e2e8f0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #1e293b;
+      letter-spacing: 0.05em;
+    }
+
+    #display {
+      width: 100%;
+      margin-bottom: 16px;
+      padding: 12px;
+      text-align: right;
+      background-color: #0f172a;
+      color: #4ade80;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 1.5rem;
+      border-radius: 12px;
+      border: none;
+      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+      outline: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-cols: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    button {
+      padding: 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .btn-num {
+      background-color: #e2e8f0;
+      color: #1e293b;
+    }
+
+    .btn-num:hover {
+      background-color: #cbd5e1;
+    }
+
+    .btn-clear {
+      background-color: #ef4444;
+      color: #ffffff;
+    }
+
+    .btn-clear:hover {
+      background-color: #dc2626;
+    }
+
+    .btn-op {
+      background-color: #f59e0b;
+      color: #ffffff;
+    }
+
+    .btn-op:hover {
+      background-color: #d97706;
+    }
+
+    .btn-equal {
+      grid-row: span 2;
+      background-color: #10b981;
+      color: #ffffff;
+      font-size: 1.25rem;
+    }
+
+    .btn-equal:hover {
+      background-color: #059669;
+    }
+
+    .col-span-2 {
+      grid-column: span 2;
+    }
+
+    #lastResult {
+      font-size: 0.75rem;
+      margin-top: 16px;
+      color: #64748b;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      min-height: 1rem;
+      text-align: center;
+    }
+  </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center bg-slate-100 font-sans">
+<body>
 
-  <div class="bg-white p-6 rounded-2xl shadow-2xl w-80 border border-slate-200">
-    <h1 class="text-center text-xl font-extrabold mb-4 text-slate-800 tracking-wide">🧮 CALCULATOR</h1>
+  <div class="calculator-card">
+    <h1>🧮 CALCULATOR</h1>
 
     <input
       type="text"
       id="display"
-      class="w-full mb-4 p-3 text-right bg-slate-900 text-green-400 font-mono text-2xl rounded-xl shadow-inner focus:outline-none"
       placeholder="0"
       readonly
     />
 
-    <div class="grid grid-cols-4 gap-3">
-      <button data-value="C" class="p-4 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">C</button>
-      <button data-value="/" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">÷</button>
-      <button data-value="*" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">×</button>
-      <button data-value="-" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">−</button>
+    <div class="grid">
+      <button data-value="C" class="btn-clear">C</button>
+      <button data-value="/" class="btn-op">÷</button>
+      <button data-value="*" class="btn-op">×</button>
+      <button data-value="-" class="btn-op">−</button>
 
-      <button data-value="7" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">7</button>
-      <button data-value="8" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">8</button>
-      <button data-value="9" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">9</button>
-      <button data-value="+" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">+</button>
+      <button data-value="7" class="btn-num">7</button>
+      <button data-value="8" class="btn-num">8</button>
+      <button data-value="9" class="btn-num">9</button>
+      <button data-value="+" class="btn-op">+</button>
 
-      <button data-value="4" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">4</button>
-      <button data-value="5" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">5</button>
-      <button data-value="6" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">6</button>
-      <button data-value="=" class="row-span-2 p-4 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-extrabold text-xl rounded-xl transition-all flex items-center justify-center cursor-pointer shadow-md">=</button>
+      <button data-value="4" class="btn-num">4</button>
+      <button data-value="5" class="btn-num">5</button>
+      <button data-value="6" class="btn-num">6</button>
+      <button data-value="=" class="btn-equal">=</button>
 
-      <button data-value="1" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">1</button>
-      <button data-value="2" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">2</button>
-      <button data-value="3" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">3</button>
+      <button data-value="1" class="btn-num">1</button>
+      <button data-value="2" class="btn-num">2</button>
+      <button data-value="3" class="btn-num">3</button>
 
-      <button data-value="0" class="col-span-2 p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">0</button>
-      <button data-value="." class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">.</button>
+      <button data-value="0" class="btn-num col-span-2">0</button>
+      <button data-value="." class="btn-num">.</button>
     </div>
 
-    <p id="lastResult" class="text-xs mt-4 text-slate-500 font-mono min-h-[1rem] text-center"></p>
+    <p id="lastResult"></p>
   </div>
 
   <script>
