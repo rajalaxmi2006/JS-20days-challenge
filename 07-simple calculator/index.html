@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-slate-100 font-sans">
+
+  <div class="bg-white p-6 rounded-2xl shadow-2xl w-80 border border-slate-200">
+    <h1 class="text-center text-xl font-extrabold mb-4 text-slate-800 tracking-wide">🧮 CALCULATOR</h1>
+
+    <input
+      type="text"
+      id="display"
+      class="w-full mb-4 p-3 text-right bg-slate-900 text-green-400 font-mono text-2xl rounded-xl shadow-inner focus:outline-none"
+      placeholder="0"
+      readonly
+    />
+
+    <div class="grid grid-cols-4 gap-3">
+      <button data-value="C" class="p-4 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">C</button>
+      <button data-value="/" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">÷</button>
+      <button data-value="*" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">×</button>
+      <button data-value="-" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">−</button>
+
+      <button data-value="7" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">7</button>
+      <button data-value="8" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">8</button>
+      <button data-value="9" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">9</button>
+      <button data-value="+" class="p-4 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold rounded-xl transition-all cursor-pointer shadow-md">+</button>
+
+      <button data-value="4" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">4</button>
+      <button data-value="5" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">5</button>
+      <button data-value="6" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">6</button>
+      <button data-value="=" class="row-span-2 p-4 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-extrabold text-xl rounded-xl transition-all flex items-center justify-center cursor-pointer shadow-md">=</button>
+
+      <button data-value="1" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">1</button>
+      <button data-value="2" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">2</button>
+      <button data-value="3" class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">3</button>
+
+      <button data-value="0" class="col-span-2 p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">0</button>
+      <button data-value="." class="p-4 bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 font-bold rounded-xl transition-all cursor-pointer shadow-sm">.</button>
+    </div>
+
+    <p id="lastResult" class="text-xs mt-4 text-slate-500 font-mono min-h-[1rem] text-center"></p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const display = document.getElementById("display");
+      const lastResult = document.getElementById("lastResult");
+      const buttons = document.querySelectorAll("button");
+
+      let currentInput = "";
+      let isEvaluationDone = false;
+
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          const value = button.getAttribute("data-value");
+
+          if (value === "C") {
+            currentInput = "";
+            display.value = "";
+            lastResult.textContent = "";
+          } else if (value === "=") {
+            if (currentInput.trim() === "") return;
+            
+            try {
+              const result = new Function(`return ${currentInput}`)();
+              const formattedResult = Number(result.toFixed(8)).toString();
+              
+              lastResult.textContent = `${currentInput} =`;
+              display.value = formattedResult;
+              currentInput = formattedResult;
+              isEvaluationDone = true;
+            } catch (error) {
+              display.value = "Error";
+              currentInput = "";
+            }
+          } else {
+            if (isEvaluationDone && !isNaN(value)) {
+              currentInput = "";
+            }
+            isEvaluationDone = false;
+
+            const lastChar = currentInput.slice(-1);
+            if (["+", "-", "*", "/"].includes(value) && ["+", "-", "*", "/"].includes(lastChar)) {
+              currentInput = currentInput.slice(0, -1) + value;
+            } else {
+              currentInput += value;
+            }
+
+            display.value = currentInput
+              .replace(/\*/g, "×")
+              .replace(/\//g, "÷");
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
