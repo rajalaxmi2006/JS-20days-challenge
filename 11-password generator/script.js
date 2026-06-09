@@ -16,13 +16,11 @@ const symbolChars = '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
 
 // Generate function
 function generatePassword() {
-    let length = parseInt(lengthEl.value);
-    
+    let length = parseInt(lengthEl.value);    
     // Validation/Enforcement of limits
     if (isNaN(length) || length < 4) length = 4;
     if (length > 32) length = 32;
     lengthEl.value = length;
-
     let allowedChars = '';
     let password = '';
 
@@ -36,12 +34,10 @@ function generatePassword() {
         passwordDisplay.innerText = 'Select at least 1 option';
         return;
     }
-
     for (let i = 0; i < length; i++) {
         const randomIndex = Math.floor(Math.random() * allowedChars.length);
         password += allowedChars[randomIndex];
     }
-
     passwordDisplay.innerText = password;
 }
 
@@ -51,13 +47,11 @@ async function copyToClipboard() {
     if (password === 'Click Generate' || password === 'Select at least 1 option') {
         return;
     }
-    
     try {
         await navigator.clipboard.writeText(password);
         const originalText = copyBtn.innerText;
         copyBtn.innerText = 'Copied!';
-        copyBtn.style.background = '#22c55e'; // turn green
-        
+        copyBtn.style.background = '#22c55e'; // turn green   
         setTimeout(() => {
             copyBtn.innerText = originalText;
             copyBtn.style.background = ''; // reset color via CSS
@@ -66,7 +60,6 @@ async function copyToClipboard() {
         alert('Failed to copy password.');
     }
 }
-
 // Event Listeners
 generateBtn.addEventListener('click', generatePassword);
 copyBtn.addEventListener('click', copyToClipboard);
