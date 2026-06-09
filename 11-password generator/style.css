@@ -1,4 +1,4 @@
-/* :root {
+:root {
     --primary: #4f46e5;
     --primary-hover: #4338ca;
     --bg: #0f172a;
@@ -122,4 +122,4 @@ input[type="checkbox"] {
 
 .btn-generate:hover {
     background: var(--primary-hover);
-} */
+}
