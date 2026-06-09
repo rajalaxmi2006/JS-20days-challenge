@@ -1,0 +1,125 @@
+/* :root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 450px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+}
+
+.result-container {
+    background-color: rgba(15, 23, 42, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #334155;
+    position: relative;
+}
+
+#password-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    word-break: break-all;
+    padding-right: 40px;
+}
+
+.btn-copy {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+    position: absolute;
+    right: 12px;
+}
+
+.btn-copy:hover {
+    background: var(--primary-hover);
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.setting label {
+    color: var(--text-muted);
+}
+
+input[type="number"] {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    padding: 6px;
+    border-radius: 4px;
+    width: 60px;
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.btn-generate {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.btn-generate:hover {
+    background: var(--primary-hover);
+} */
