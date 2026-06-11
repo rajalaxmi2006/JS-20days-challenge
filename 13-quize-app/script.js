@@ -45,24 +45,17 @@ const questions = [
 ];
 
 const questionElement = document.getElementById("question");
-
 const answerButtons = document.getElementById("answer-buttons");
-
 const nextBtn = document.getElementById("nextBtn");
-
 let currentQuestionIndex = 0;
-
 let score = 0;
 
 // Start Quiz
 
 function startQuiz() {
   currentQuestionIndex = 0;
-
   score = 0;
-
   nextBtn.innerHTML = "Next Question";
-
   showQuestion();
 }
 
@@ -70,24 +63,16 @@ function startQuiz() {
 
 function showQuestion() {
   resetState();
-
   let currentQuestion = questions[currentQuestionIndex];
-
   questionElement.innerHTML = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
-
     button.innerHTML = answer.text;
-
     button.classList.add("btn");
-
     answerButtons.appendChild(button);
-
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
-
     button.addEventListener("click", selectAnswer);
   });
 }
@@ -96,7 +81,6 @@ function showQuestion() {
 
 function resetState() {
   nextBtn.style.display = "none";
-
   while (answerButtons.firstChild) {
     answerButtons.removeChild(answerButtons.firstChild);
   }
@@ -106,12 +90,10 @@ function resetState() {
 
 function selectAnswer(event) {
   const selectedBtn = event.target;
-
   const isCorrect = selectedBtn.dataset.correct === "true";
 
   if (isCorrect) {
     selectedBtn.classList.add("correct");
-
     score++;
   } else {
     selectedBtn.classList.add("wrong");
@@ -121,10 +103,8 @@ function selectAnswer(event) {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
     }
-
     button.disabled = true;
   });
-
   nextBtn.style.display = "block";
 }
 
@@ -132,11 +112,8 @@ function selectAnswer(event) {
 
 function showScore() {
   resetState();
-
   questionElement.innerHTML = `🎉 You scored ${score} out of ${questions.length}!`;
-
-  nextBtn.innerHTML = "Play Again";
-
+  nextBtn.innerHTML = "Play Again"
   nextBtn.style.display = "block";
 }
 
