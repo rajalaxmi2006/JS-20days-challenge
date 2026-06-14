@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #111827;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+}
+
+.balance {
+  background: #3b82f6;
+}
+
+.income {
+  background: #22c55e;
+}
+
+.expense {
+  background: #ef4444;
+}
+
+.card p {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+input,
+select {
+  padding: 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #3b82f6;
+}
+
+button {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+#transactionList {
+  list-style: none;
+}
+
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.transaction.income-item {
+  border-left: 5px solid #22c55e;
+}
+
+.transaction.expense-item {
+  border-left: 5px solid #ef4444;
+}
+
+.deleteBtn {
+  background: #ef4444;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}
