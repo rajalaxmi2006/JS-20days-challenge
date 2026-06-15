@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:linear-gradient(
+        135deg,
+        #24292e,
+        #0d1117
+    );
+}
+
+.container{
+
+    width:100%;
+    max-width:550px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.2);
+}
+
+h1{
+
+    margin-bottom:25px;
+
+    color:#111827;
+}
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+}
+
+input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:2px solid #e5e7eb;
+
+    border-radius:10px;
+
+    outline:none;
+}
+
+input:focus{
+
+    border-color:#24292e;
+}
+
+button{
+
+    padding:14px 20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#24292e;
+
+    color:white;
+
+    cursor:pointer;
+}
+
+button:hover{
+
+    background:#111827;
+}
+
+.profile-card{
+
+    display:none;
+}
+
+.profile-card img{
+
+    width:140px;
+
+    height:140px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    margin-bottom:15px;
+
+    border:5px solid #e5e7eb;
+}
+
+#login{
+
+    color:#6b7280;
+
+    margin-bottom:20px;
+}
+
+.stats{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    margin:25px 0;
+}
+
+.stats div{
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    width:30%;
+}
+
+.stats h3{
+
+    color:#111827;
+}
+
+#profileLink{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    background:#24292e;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+}
+
+#profileLink:hover{
+
+    background:#111827;
+}
+
+@media(max-width:600px){
+
+    .search-box{
+
+        flex-direction:column;
+    }
+
+    .stats{
+
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+    .stats div{
+
+        width:100%;
+    }
+}
