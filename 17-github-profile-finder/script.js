@@ -12,12 +12,10 @@ const profileLink = document.getElementById("profileLink");
 // Fetch GitHub Profile
 async function getGitHubProfile() {
   const username = usernameInput.value.trim();
-
   if (username === "") {
     alert("Please enter a username.");
     return;
   }
-
   try {
     const response = await fetch(`https://api.github.com/users/${username}`);
     if (!response.ok) {
