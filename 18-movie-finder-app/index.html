@@ -1,58 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Search App</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
+      <h1>🎬 Movie Search App</h1>
+      <div class="search-box">
+        <input type="text" id="movieInput" placeholder="Enter movie name..." />
+        <button id="searchBtn">Search</button>
+      </div>
 
-        <h1>🎬 Movie Search App</h1>
-
-        <div class="search-box">
-
-            <input
-                type="text"
-                id="movieInput"
-                placeholder="Enter movie name..."
-            >
-
-            <button id="searchBtn">
-                Search
-            </button>
-
+      <div id="movieCard" class="movie-card">
+        <img id="poster" src="" alt="Movie Poster" />
+        <div class="movie-info">
+          <h2 id="title">Movie Title</h2>
+          <p><strong>📅 Year:</strong> <span id="year"></span></p>
+          <p><strong>🎭 Genre:</strong> <span id="genre"></span></p>
+          <p><strong>⭐ IMDb:</strong> <span id="rating"></span></p>
+          <p id="plot"></p>
         </div>
-
-        <div id="movieCard" class="movie-card">
-
-            <img
-                id="poster"
-                src=""
-                alt="Movie Poster"
-            >
-
-            <div class="movie-info">
-
-                <h2 id="title">Movie Title</h2>
-
-                <p><strong>📅 Year:</strong> <span id="year"></span></p>
-
-                <p><strong>🎭 Genre:</strong> <span id="genre"></span></p>
-
-                <p><strong>⭐ IMDb:</strong> <span id="rating"></span></p>
-
-                <p id="plot"></p>
-
-            </div>
-
-        </div>
-
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
